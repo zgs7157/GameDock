@@ -60,8 +60,11 @@ public sealed class MainForm : Form
         var top = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 44, Padding = new Padding(8, 6, 8, 0) };
         top.Controls.Add(MakeLabel("镜像源："));
         cboMirror = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Width = 170 };
-        cboMirror.DataSource = _mirrors.All.Select(m => $"{m.DisplayName}（{m.Key}）").ToList();
-        cboMirror.SelectedIndex = Math.Max(0, _mirrors.All.ToList().FindIndex(m => m.Key == _config.Mirror));
+        // 注意：用 Items.AddRange 而非 DataSource，避免控件句柄未创建时
+        // 设置 SelectedIndex 触发 ArgumentOutOfRangeException（启动崩溃）。
+        cboMirror.Items.AddRange(_mirrors.All.Select(m => $"{m.DisplayName}（{m.Key}）").ToArray());
+        var mirrorIdx = _mirrors.All.ToList().FindIndex(m => m.Key == _config.Mirror);
+        cboMirror.SelectedIndex = mirrorIdx >= 0 && mirrorIdx < cboMirror.Items.Count ? mirrorIdx : 0;
         top.Controls.Add(cboMirror);
 
         var btnHealth = new Button { Text = "测速", Width = 56, AutoSize = false };
