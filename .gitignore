@@ -1,0 +1,23 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+
+# Visual Studio
+.vs/
+.vscode/
+.idea/
+
+# Test results
+TestResults/
+*.trx
+
+# GameDock runtime data
+%APPDATA%/GameDock/
+config.json
+mirrors.json
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store

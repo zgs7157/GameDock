@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>GameDock.Cli</RootNamespace>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>gamedock</AssemblyName>
+    <Version>0.1.0</Version>
+    <Description>GameDock 命令行工具：下载 Minecraft 版本/加载器并导入启动器。</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameDock.Core\GameDock.Core.csproj" />
+  </ItemGroup>
+
+</Project>
